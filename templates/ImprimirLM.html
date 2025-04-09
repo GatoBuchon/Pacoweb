@@ -1,0 +1,35 @@
+{% extends './index.html'%}
+
+{% block title %} Materiales {% endblock %}
+
+{% block body %}
+
+{% if materiales %}
+<br>
+<table>
+<tr>
+    <th>Nombre</th>
+    <th>Cantidad</th>
+    <th>Precio</th>
+    <th>Marca</th>
+</tr>
+{% for material in materiales %}
+<tr>
+<td>{{ material[1] }}</td>
+<td>{{ material[2] }}</td>
+<td>${{ material[3] }}</td>
+<td>{{ material[4] }}</td>
+</tr>
+
+{% endfor %}
+</table>
+
+
+<a href="#"  onclick="window.print()"><button>Imprimir reporte</button></a>
+
+{% else %}
+<h2>No hay materiales</h2>
+{% endif %}
+
+
+{% endblock %}

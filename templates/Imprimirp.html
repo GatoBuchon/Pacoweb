@@ -1,0 +1,45 @@
+{% extends './index.html' %}
+
+{% block title %} Pedidos {% endblock %}
+
+{% block body %}
+ <form action="{{url_for('ImprimirPP',id=Color[0])}}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <label>Color</label>
+    <input type="text" name="Color" placeholder="Color" value="{{Color.1}}">
+    <label>Cantidad</label>
+    <input type="text" name="Cantidad_bu" placeholder="Cantidad" value="{{Color.2}}">
+    <label>Fecha de pedido</label>
+    <input type="text" name="Fecha" placeholder="Fecha" value="{{Color.3}}">
+    <label>Cuenta total</label>
+    <input type="text" name="Cuenta" placeholder="Total" value="{{Color.4}}">
+    <label>Modelo de camioneta</label>
+    <input type="text" name="Modelo_Camioneta" placeholder="Modelo de camioneta" value="{{Color.5}}">
+    <label>Nombre del cliente</label>
+    <input type="text" name="Cliente" placeholder="Cliente" value="{{Color.6}}">
+    <label>Lugar de entrega</label>
+    <input type="text" name="L" placeholder="Entrega" value="{{Color.7}}">
+    
+    <label>Personalizada</label>
+    <select name="ConL">
+    <option selected value="{{Color.8}}">{{Color.8}}</option>
+    <option value="Con letras">Con letras</option>
+    <option value="Normal">Normal</option>
+    </select>
+
+    <label>Tipo de burrera</label>
+    <select name="TipoB" >
+    <option selected value="{{Color.9}}">{{Color.9}}</option>
+    <option value="Burrera alfa">Burrera alfa</option>
+    <option value="Burrera SPORT">Burrera SPORT</option>
+    <option value="Bumper Trasero">Bumper Trasero</option>
+    <option value="Bumper Trasero">Bumper Trasero</option>
+    <option value="Burrera Super">Burrera Super</option>
+    <option value="Centro de burrera">Centro de burrera</option>
+    </select>
+
+    <a href="#"  onclick="window.print()"><button class="btn btn-success btn-block">Imprimir reporte</button ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+      </svg></a>
+    </form>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends './layout.html' %}
+
+{% block title %} Pedidos {% endblock %}
+
+{% block body %}
+<h3>Editar pedido</h3>
+ <form action="{{url_for('EditarPP',id=Color[0])}}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <label>Color</label>
+    <input type="text" name="Color" placeholder="Color" value="{{Color.1}}" required>
+    <label>Cantidad</label>
+    <input type="text" name="Cantidad_bu" placeholder="Cantidad" value="{{Color.2}}" required>
+    <label>Fecha de pedido</label>
+    <input type="text" name="Fecha" placeholder="Fecha" value="{{Color.3}}" required>
+    <label>Cuenta total</label>
+    <input type="text" name="Cuenta" placeholder="Total" value="{{Color.4}}" required>
+    <label>Modelo de camioneta</label>
+    <input type="text" name="Modelo_Camioneta" placeholder="Modelo de camioneta" value="{{Color.5}}" required>
+    <label>Nombre del cliente</label>
+    <input type="text" name="Cliente" placeholder="Cliente" value="{{Color.6}}" required>
+    <label>Lugar de entrega</label>
+    <input type="text" name="L" placeholder="Entrega" value="{{Color.7}}" required>
+    
+    <label>Personalizada</label>
+    <select name="ConL" required>
+    <option selected value="{{Color.8}}">{{Color.8}}</option>
+    <option value="Con letras">Con letras</option>
+    <option value="Normal">Normal</option>
+    </select>
+
+    <label>Tipo de burrera</label>
+    <select name="TipoB" required>
+    <option selected value="{{Color.9}}">{{Color.9}}</option>
+    <option value="Burrera alfa">Burrera alfa</option>
+    <option value="Burrera SPORT">Burrera SPORT</option>
+    <option value="Bumper Trasero">Bumper Trasero</option>
+    <option value="Burrera Super">Burrera Super</option>
+    <option value="Centro de burrera">Centro de burrera</option>
+    </select>
+
+    <button type="submit" class="btn btn-success btn-block"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"  fill="currentColor" class="bi bi-save-fill" viewBox="0 0 16 16" style="color: white;">
+        <path d="M8.5 1.5A1.5 1.5 0 0 1 10 0h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h6c-.314.418-.5.937-.5 1.5v7.793L4.854 6.646a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0l3.5-3.5a.5.5 0 0 0-.708-.708L8.5 9.293V1.5z"/>
+      </svg>
+    Guardar
+    </button>
+    </form>
+{% endblock %}

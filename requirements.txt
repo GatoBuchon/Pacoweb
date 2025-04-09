@@ -1,0 +1,17 @@
+bcrypt
+blinker
+click
+colorama
+Flask
+Flask-Login
+Flask-MySQL
+Flask-MySQLdb
+flask-paginate
+Flask-WTF
+itsdangerous
+Jinja2
+MarkupSafe
+mysqlclient
+PyMySQL
+Werkzeug
+WTForms

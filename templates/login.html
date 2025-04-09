@@ -1,0 +1,67 @@
+{% extends './index.html'%}
+
+{% block title %} Login {% endblock %}
+
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+
+<style>
+    .caja {
+        margin: 10%;
+        margin-left: 30%;
+        margin-right: 30;
+    }
+</style>
+
+<div class="caja">
+
+  <h3>Iniciar sesion</h3>
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+  </svg>
+
+    <form method="POST" action="{{url_for('loguear')}}">
+      <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <div class="form-group">
+          <label for="">Ingresa tu usuario</label>
+          <input type="text" placeholder="Inserta el nombre" name = "Nombre">
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <br>
+          <input type="password" id="password" name = "Password">
+          <input type="checkbox" id="showPassword"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+          </svg>
+          <br>
+        </div>
+        <button type="submit" class="btn btn-primary">Iniciar sesion</button>
+        </div>
+      </form>
+</div>
+<script>
+  var showPasswordCheckbox = document.getElementById("showPassword");
+  var passwordField = document.getElementById("password");
+  
+  showPasswordCheckbox.addEventListener("change", function() {
+    if (showPasswordCheckbox.checked) {
+      passwordField.type = "text";
+    } else {
+      passwordField.type = "password";
+    }
+  });
+  </script>
+
+{% endblock %}

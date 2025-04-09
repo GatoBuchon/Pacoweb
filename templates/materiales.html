@@ -1,0 +1,105 @@
+{% extends './layout.html'%}
+
+{% block title %} Materiales {% endblock %}
+
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      {% if "eliminado" in message %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
+      </div>
+      {% else %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
+      </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% if materiales %}
+<br>
+<a target="_blank" href="{{url_for('agregarM')}}"><button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" fill="currentColor" class="bi bi-bookmark-plus-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm6.5-11a.5.5 0 0 0-1 0V6H6a.5.5 0 0 0 0 1h1.5v1.5a.5.5 0 0 0 1 0V7H10a.5.5 0 0 0 0-1H8.5V4.5z"/>
+</svg>Agregar material</button></a>
+<a target="_blank" href="{{url_for('ImprimirM')}}"><button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-down-square-fill" viewBox="0 0 16 16">
+  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5a.5.5 0 0 1 1 0z"/>
+</svg> Imprimir reporte </button></a>
+
+<table>
+<tr>
+    <th>Nombre</th>
+    <th>Cantidad</th>
+    <th>Precio</th>
+    <th>Marca</th>
+    <th></th>
+    <th></th>
+</tr>
+{% for material in materiales %}
+<tr>
+<td>{{ material[1] }}</td>
+<td>{{ material[2] }}</td>
+<td>${{ material[3] }}</td>
+<td>{{ material[4] }}</td>
+<td class="text-center"><a target="_blank" href="{{url_for('editarMA',id=material[0])}}"><button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-scissors" viewBox="0 0 16 16" style="color: green;">
+    <path d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61 3.5 3.5zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0zm7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z"/>
+  </svg><button type="submit" style="color: green;">Editar</button></a></button></a></td>
+<td class="text-center"><a href="{{url_for('EliminarM',id=material[0])}}" class="btn-delete"><button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16" style="color: red;">
+    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+  </svg><button type="submit" style="color: red;">Eliminar</button></a></td>
+</tr>
+
+{% endfor %}
+</table>
+
+{% else %}
+<h2>No hay materiales</h2>
+<a target="_blank" href="{{url_for('agregarM')}}"><button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmark-plus-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm6.5-11a.5.5 0 0 0-1 0V6H6a.5.5 0 0 0 0 1h1.5v1.5a.5.5 0 0 0 1 0V7H10a.5.5 0 0 0 0-1H8.5V4.5z"/>
+</svg>Agregar material</button></a>
+{% endif %}
+{% if pagination.pages|length > 1 %}
+    <nav aria-label="Page navigation example">
+      <ul class="pagination  justify-content-center">
+        {% if pagination.page > 2 %}
+        <li class="page-item"><a class="page-link" href="{{ url_for('Material_Ver', page=pagination.page-1) }}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16" style="color: green;">
+          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+        </svg><i class="fa-solid fa-angle-left"></i></a></li>
+        <li class="page-item"><a class="page-link" href="{{ url_for('Material_Ver', page=1) }}">1</a></li>
+        <li class="page-item disabled"><a class="page-link">...</a></li>
+        {% endif %}
+
+        {% set start_page = pagination.page - 1 %}
+        {% set end_page = pagination.page + 1 %}
+        {% if start_page <= 0 %}
+            {% set end_page = end_page - start_page + 1 %}
+            {% set start_page = 1 %}
+        {% endif %}
+        {% if end_page > pagination.pages|length %}
+            {% set start_page = start_page - (end_page - pagination.pages|length) %}
+            {% set end_page = pagination.pages|length %}
+        {% endif %}
+
+        {% for num in range(start_page, end_page + 1) %}
+            {% if num == pagination.page %}
+            <li class="page-item active"><a class="page-link">{{ num }}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('Material_Ver', page=num) }}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if pagination.page < (pagination.pages|length)-1 %}
+        <li class="page-item disabled"><a class="page-link">...</a></li>
+        <li class="page-item"></li><a class="page-link" href="{{ url_for('Material_Ver', page=pagination.pages|length) }}">{{ pagination.pages|length }}</a></li>
+        <li class="page-item"></li><a class="page-link" href="{{ url_for('Material_Ver', page=pagination.page+1) }}"><i class="fa-solid fa-angle-right"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16" style="color: green;">
+          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+        </svg></i></a></li>
+        {% endif %}
+      </ul>
+    </nav>
+{% endif %}
+
+{% endblock %}
