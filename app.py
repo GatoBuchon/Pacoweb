@@ -510,6 +510,6 @@ if __name__ == '__main__':
  app.register_error_handler(404, pagina_no_encontrada)
  app.register_error_handler(401, acceso_no_autorizado)
  app.add_url_rule('/query_string', view_func=query_string)
- app.run(debug=True, port=8000)
+ app.run(host='0.0.0.0', port=8000)
 
 
